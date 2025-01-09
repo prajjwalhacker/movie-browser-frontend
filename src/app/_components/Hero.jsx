@@ -1,8 +1,15 @@
+import Image from 'next/image'
 import React from 'react'
+import moviePosterI from '../../../public/movie-poster.jpg';
 
 const Hero = () => {
   return (
-    <div>Hero</div>
+    <div className='main-container'>
+      <div className='title'>
+         Find Your Next <span className='title-special-text'>Favorite</span> Movie!
+      </div>
+        <img src={moviePosterI.src} alt='' height={'400px'} width={'400px'}/>
+    </div>
   )
 }
 

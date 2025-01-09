@@ -1,0 +1,25 @@
+.main-container {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   .title {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+    font-size: 3.75rem;
+    max-width: 400px;
+   }
+   .title-special-text {
+     color: #00FFFF;
+   }
+    height: 60vh;
+    padding-inline: 200px;
+    padding-block: 100px;
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 20px;
+        .title {
+           font-size: 2.25rem;
+           max-width: unset;
+        }
+    }
+}
