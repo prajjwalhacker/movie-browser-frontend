@@ -1,5 +1,5 @@
 import Filters from "./_components/Filters";
-import Loader from "./_components/Loader";
+import Loader from "./_components/InfiniteScrollLoader";
 import MovieCard from "./_components/MovieCard";
 import MovieSearch from "./_components/MovieSearch";
 import Search from "./_components/Search";
@@ -21,7 +21,7 @@ export default function Home() {
             <MovieCard/>  
             <MovieCard/>  
             </div>
-            <MovieSearch/>
+            <Loader/>
         </div>
   );
 }

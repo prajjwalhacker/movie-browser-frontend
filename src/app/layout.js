@@ -7,6 +7,7 @@ import '../styles/movie-card.scss';
 import '../styles/_loader.scss';
 import '../styles/_search.scss';
 import '../styles/filters.scss';
+import '../styles/infinite-scroll-loader.scss';
 import Hero from './_components/Hero';
 
 export const metadata = {
