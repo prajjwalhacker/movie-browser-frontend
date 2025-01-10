@@ -1,49 +1,71 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import Filters from "./_components/Filters";
 import Loader from "./_components/InfiniteScrollLoader";
 import MovieCard from "./_components/MovieCard";
 import MovieSearch from "./_components/MovieSearch";
 import Search from "./_components/Search";
+import { useTransition } from "react";
 
 export default function Home() {
   
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const onSearch = async (value) => {
-   setQuery(value);
-   if (!value) return;
-   movieFetch(value);
+  const [loading, setLoading] = useState(false);
+  const [page,setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const [isPending, startTransition] = useTransition();
+
+  const onSearch = async (e) => {
+   e.preventDefault();
+   startTransition(() => {
+      setQuery(e.target.value);
+   })
  };
 
- const movieFetch=async (value)=> {
-   
+ 
+ const fetchMovies = async () => {
    setLoading(true);
-
-   
    try {
      const response = await axios.get('https://www.omdbapi.com/', {
        params: {
-         s: value || 'indian',  // Search query
-         apikey: 'da5fae81', // Replace with your OMDb API key
+         s: query || 'indian',      
+         apikey: 'da5fae81', 
+         page, 
        },
      });
 
+
      if (response.data.Response === 'True') {
-       setMovies(response.data.Search); // Set the list of movies
-     } else {
-       setMovies([]);
+       setMovies((prev) => [...response.data.Search]);
      }
-   } catch (err) {
+   } catch (error) {
+     console.error('Error fetching movies:', error);
    } finally {
      setLoading(false);
    }
- }
+ };
+
+
 
  useEffect(() => {
-   movieFetch();
+   fetchMovies();
+ }, [query]);
+
+ const handleScroll = () => {
+   if (
+     window.innerHeight + document.documentElement.scrollTop >=
+     document.documentElement.offsetHeight - 100
+   ) {
+     setPage((prevPage) => prevPage + 1);
+   }
+ };
+
+
+ useEffect(() => {
+   window.addEventListener('scroll', handleScroll);
+   return () => window.removeEventListener('scroll', handleScroll);
  }, []);
 
   return (

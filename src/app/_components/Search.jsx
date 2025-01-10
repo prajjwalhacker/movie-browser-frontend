@@ -7,9 +7,8 @@ const Search = ({ query ='', onSearch=()=>{} }) => {
     <input
       type="text"
       id="movie-search"
-      value={query}
       onChange={(e) => {
-        onSearch(e.target.value);
+        onSearch(e);
       }}
       className='search-container'
       placeholder="Search for movies..."
