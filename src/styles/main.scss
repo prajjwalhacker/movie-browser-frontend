@@ -28,4 +28,15 @@
         }
         gap: 2.5rem;
     }
+    .no-movies{
+        color: #ff4d4d; /* Bright red for visibility */
+        font-size: 2rem; /* Large font size */
+        font-family: 'Arial', sans-serif; /* Clean font */
+        text-transform: uppercase; /* All caps for emphasis */
+        font-weight: bold; /* Bold text */
+        letter-spacing: 3px; /* Spaced out letters */
+        text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.2), 0 0 10px rgba(255, 77, 77, 0.8); /* Glow effect */
+        text-align: center; /* Center the text */
+        margin-top: 50px; /* Add some spacing */
+    }
 }

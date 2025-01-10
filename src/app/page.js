@@ -19,13 +19,15 @@ export default function Home() {
 
   const onSearch = async (e) => {
    e.preventDefault();
+   setHasMore(true);
    startTransition(() => {
       setQuery(e.target.value);
    })
  };
 
  
- const fetchMovies = async () => {
+ const fetchMovies = async (filters) => {
+   if (loading || !hasMore) return
    setLoading(true);
    try {
      const response = await axios.get('https://www.omdbapi.com/', {
@@ -33,12 +35,21 @@ export default function Home() {
          s: query || 'indian',      
          apikey: 'da5fae81', 
          page, 
+         ...(filters || {})
        },
      });
 
 
      if (response.data.Response === 'True') {
+       if (filters?.page === 1) {
        setMovies((prev) => [...response.data.Search]);
+       }
+       else {
+         setMovies((prev) => [...prev,...response.data.Search]);
+       }
+     }
+     else {
+        setHasMore(false);
      }
    } catch (error) {
      console.error('Error fetching movies:', error);
@@ -50,8 +61,14 @@ export default function Home() {
 
 
  useEffect(() => {
-   fetchMovies();
+   fetchMovies({ page: 1 });
  }, [query]);
+
+ useEffect(() => {
+   fetchMovies();
+ }, [page]);
+
+
 
  const handleScroll = () => {
    if (
@@ -77,7 +94,7 @@ export default function Home() {
                </div>
             </div>
             <Filters/>
-            {loading ? <Loader/> : 
+            {!movies?.length ? <Loader/> : 
             <div className="movie-section-main">  
               {movies.map((item, index) => {
                return (
@@ -85,7 +102,9 @@ export default function Home() {
                )
               })}
             </div>}
-            <Loader/>
+            {hasMore ? <Loader/> : <div className="no-movies">
+  No More Movies Found
+</div>}
         </div>
   );
 }
