@@ -23,4 +23,12 @@
   align-items: center;
   font-size: 2.25rem;
   color: #fff;
+  .clear-button {
+    background-color: white;
+    color: black;
+    height: 40px;
+    width: 80px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
 }

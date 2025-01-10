@@ -1,26 +1,18 @@
 // NetflixMovieCard.js
-export default function MovieCard() {
-    const movie = {
-      Title: "Alles wegen Hulk",
-      Year: "2004",
-      Poster:
-        "https://m.media-amazon.com/images/M/MV5BZTEwMjdhOGEtMGUyOC00Yzg4LTliYTgtMzBlYjgwYzdiNWUyXkEyXkFqcGdeQXVyMDYxMTUwNg@@._V1_SX300.jpg",
-    };
+export default function MovieCard({ item }) {
+    
   
     return (
       <div className="movie-card">
-        {/* Movie Poster */}
         <img
-          src={movie.Poster}
-          alt={movie.Title}
+          src={item.Poster}
+          alt={item.Title}
           className="movie-image"
         />
-        {/* Overlay */}
         <div className="movie-detail">
-          {/* Movie Details */}
           <div >
-            <h2>{movie.Title}</h2>
-            <p>Year: {movie.Year}</p>
+            <h2>{item.Title}</h2>
+            <p>Year: {item.Year}</p>
           </div>
         </div>
       </div>

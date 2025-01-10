@@ -30,6 +30,9 @@ const Filters = () => {
         <MyDropdown options={options} handleChange={handleChange} placeholder='Min rating'/>
         <MyDropdown options={options} handleChange={handleChange} placeholder='Max rating'/>
         </div>
+        <button className='clear-button'>
+           Clear
+        </button>
     </div>
   )
 }
