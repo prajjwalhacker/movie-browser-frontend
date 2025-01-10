@@ -1,4 +1,4 @@
-import Image from 'next/image'
+
 import React from 'react'
 import moviePosterI from '../../../public/movie-poster.jpg';
 

@@ -4,6 +4,8 @@ import '../styles/movie-listing.scss';
 import '../styles/hero.scss';
 import '../styles/main.scss';
 import '../styles/movie-card.scss';
+import '../styles/_loader.scss';
+import '../styles/_search.scss';
 import Hero from './_components/Hero';
 
 export const metadata = {
