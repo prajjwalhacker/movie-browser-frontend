@@ -1,3 +1,4 @@
+import Filters from "./_components/Filters";
 import Loader from "./_components/Loader";
 import MovieCard from "./_components/MovieCard";
 import MovieSearch from "./_components/MovieSearch";
@@ -12,6 +13,7 @@ export default function Home() {
                   <Search/>
                </div>
             </div>
+            <Filters/>
             <Loader/>
             <div className="movie-section-main">  
             <MovieCard/>  

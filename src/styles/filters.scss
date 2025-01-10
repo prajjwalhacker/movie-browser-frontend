@@ -1,0 +1,26 @@
+.filters-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  .year-range {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+  }
+  .genre {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+  }
+  .rating-range {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+  }
+  align-items: center;
+  font-size: 2.25rem;
+  color: #fff;
+}

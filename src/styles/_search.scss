@@ -1,13 +1,13 @@
 .search-container {
-    width: 100%;
-    max-width: 380px;
-    height: 100%;
-    position: relative;
-    --tw-bg-opacity: 1;
-    background-color: rgb(15 17 23 / var(--tw-bg-opacity));
-    color: white;
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 25px;
+    padding: 5px 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 60%;
     font-size: 16px;
-    padding-inline: 10px;
-    border-radius: 5px;
-    outline: none;
-}
+    font-weight: 800;
+    width: 100%;
+
+  }

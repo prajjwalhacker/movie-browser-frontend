@@ -6,6 +6,7 @@ import '../styles/main.scss';
 import '../styles/movie-card.scss';
 import '../styles/_loader.scss';
 import '../styles/_search.scss';
+import '../styles/filters.scss';
 import Hero from './_components/Hero';
 
 export const metadata = {
