@@ -2,6 +2,7 @@
 import '../styles/_global.scss';
 import '../styles/movie-listing.scss';
 import '../styles/hero.scss';
+import '../styles/main.scss';
 import Hero from './_components/Hero';
 
 export const metadata = {
@@ -12,13 +13,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-              <head>
+      <head>
         <link rel="icon" href="/favicon.ico" />
       </head>
-
-      <body
-      >
-                <Hero/>
+      <body>
+         <Hero/>
         {children}
       </body>
     </html>

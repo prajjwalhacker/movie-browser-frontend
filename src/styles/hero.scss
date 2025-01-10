@@ -11,9 +11,10 @@
    .title-special-text {
      color: #00FFFF;
    }
-    height: 60vh;
+    height: 50vh;
     padding-inline: 200px;
     padding-block: 100px;
+    padding-bottom: 50px;
     @media (max-width: 768px) {
         flex-direction: column;
         gap: 20px;
