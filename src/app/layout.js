@@ -3,6 +3,7 @@ import '../styles/_global.scss';
 import '../styles/movie-listing.scss';
 import '../styles/hero.scss';
 import '../styles/main.scss';
+import '../styles/movie-card.scss';
 import Hero from './_components/Hero';
 
 export const metadata = {

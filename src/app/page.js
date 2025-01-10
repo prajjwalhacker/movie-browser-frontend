@@ -7,6 +7,11 @@ export default function Home() {
                Explore Movies
             </div>
             <div className="movie-section-main">
+            <MovieCard/>  
+            <MovieCard/>  
+            <MovieCard/>  
+            <MovieCard/>  
+            <MovieCard/>  
             </div>
         </div>
   );
