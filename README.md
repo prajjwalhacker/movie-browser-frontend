@@ -10,7 +10,7 @@ A Next.js application to explore movies, search by title, and save favorites.
 
 ## Tech Stack
 - **Frontend**: Next.js, React.js
-- **Backend**: omdbAPI for movie data
+- **Backend API**: rapidapi for movie data
 - **Deployment**: Vercel
 
 ## Getting Started
