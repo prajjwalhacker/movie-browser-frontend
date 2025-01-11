@@ -37,7 +37,7 @@ export default function Home() {
      const response = await axios.get('https://www.omdbapi.com/', {
        params: {
          s: query || 'indian',      
-         apikey: 'da5fae81', 
+         apikey: process.env.NEXT_PUBLIC_API_KEY, 
          page, 
          ...(filters || {})
        },
