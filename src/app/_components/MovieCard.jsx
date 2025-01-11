@@ -25,7 +25,6 @@ export default function MovieCard({ item }) {
         });
         return;
        }
-
        localStorage.setItem('favoriteMovie', JSON.stringify(newArr));
     }
     toast.success(`${value.Title} has been added to your favorites!`, {
