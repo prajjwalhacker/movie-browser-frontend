@@ -11,7 +11,7 @@ function getYears(start, end) {
 }
 
 
-const Filters = () => {
+const Filters = ({ filters={}, setFilters = ()=>{}}) => {
 
   const options = getYears(1990, 2024);
 
@@ -47,30 +47,50 @@ const Filters = () => {
 
 
 
-  const handleChange = ()=>{}
+  const handleStartYearChange = (e)=>{
+    setFilters((prev) => ({ ...prev, startYearRange: e.value }));
+  }
 
-  const handleChangeGenre = ()=>{}
+  const handleEndYearChange = (e)=>{
+    setFilters((prev) => ({ ...prev, endYearRange: e.value }));
+  }
 
-  const handleRatingChange = () => {}
+  const handleChangeGenre = (e)=>{
+    setFilters((prev) => ({ ...prev, genre: e.value }));
+  }
+
+  const handleStartRatingChange = (e) => {
+    setFilters((prev) => ({ ...prev, startRating: e.value }));
+  }
+
+  const handleEndRatingChange = (e) => {
+    setFilters((prev) => ({ ...prev, endRating: e.value }));
+  }
+
+  const clearFilter=()=> {
+     setFilters({});
+  }
 
   return ( 
     <div className='filters-container'>
         Advance filters
         <div className='year-range'>
         Year Range
-        <MyDropdown options={options} handleChange={handleChange} placeholder='Start Year'/>
-        <MyDropdown options={options} handleChange={handleChange} placeholder='End Year'/>
+        <MyDropdown options={options} handleChange={handleStartYearChange} placeholder='Start Year' value={filters.startYearRange} />
+        <MyDropdown options={options} handleChange={handleEndYearChange} placeholder='End Year' value={filters.endYearRange} />
         </div>
         <div className='genre'>
         Genre
-        <MyDropdown options={genres} handleChange={handleChangeGenre} placeholder='Select genre'/>
+        <MyDropdown options={genres} handleChange={handleChangeGenre} placeholder='Select genre' value={filters.genre} />
         </div>
         <div className='rating-range'>
         Rating Range
-        <MyDropdown options={ratingOptions} handleChange={handleRatingChange} placeholder='Min rating'/>
-        <MyDropdown options={ratingOptions} handleChange={handleRatingChange} placeholder='Max rating'/>
+        <MyDropdown options={ratingOptions} handleChange={handleStartRatingChange} placeholder='Min rating' value={filters.startRating} />
+        <MyDropdown options={ratingOptions} handleChange={handleEndRatingChange} placeholder='Max rating' value={filters.endRating} />
         </div>
-        <button className='clear-button'>
+        <button className='clear-button' onClick={() => {
+           clearFilter();
+        }}>
            Clear
         </button>
     </div>

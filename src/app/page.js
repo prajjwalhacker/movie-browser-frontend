@@ -4,7 +4,6 @@ import axios from "axios";
 import Filters from "./_components/Filters";
 import Loader from "./_components/InfiniteScrollLoader";
 import MovieCard from "./_components/MovieCard";
-import MovieSearch from "./_components/MovieSearch";
 import Search from "./_components/Search";
 import { useTransition } from "react";
 
@@ -15,6 +14,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [page,setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const [filters, setFilters] = useState({  });
   const [isPending, startTransition] = useTransition();
 
   const onSearch = async (e) => {
@@ -59,6 +59,14 @@ export default function Home() {
  };
 
 
+ const fetchMoviesByGenre = () => {
+     try {
+        
+     }
+     catch (err) {
+        
+     }
+ }
 
  useEffect(() => {
    fetchMovies({ page: 1 });
@@ -69,6 +77,9 @@ export default function Home() {
  }, [page]);
 
 
+ useEffect(() => {
+     console.log(filters);
+ }, [JSON.stringify(filters)]);
 
  const handleScroll = () => {
    if (
@@ -93,7 +104,7 @@ export default function Home() {
                   <Search query={query} onSearch={onSearch}/>
                </div>
             </div>
-            <Filters/>
+            <Filters filters={filters} setFilters={setFilters}/>
             {!movies?.length ? <Loader/> : 
             <div className="movie-section-main">  
               {movies.map((item, index) => {

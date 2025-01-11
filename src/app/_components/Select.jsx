@@ -1,9 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 
-const MyDropdown = ({ options=[], handleChange=()=>{}, placeholder='' }) => {
- 
-
+const MyDropdown = ({ options=[], handleChange=()=>{}, placeholder='', value='' }) => {
 
 
   const customStyles = {
@@ -39,11 +37,13 @@ const MyDropdown = ({ options=[], handleChange=()=>{}, placeholder='' }) => {
     }),
   };
 
+
   return (
     <div className="dropdown">
       <Select 
         options={options} 
         onChange={handleChange} 
+        value={options.filter((item) => item.value === value)[0]}
         placeholder={placeholder}
         styles={customStyles}
       />
