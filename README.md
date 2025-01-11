@@ -17,3 +17,5 @@ A Next.js application to explore movies, search by title, and save favorites.
 1. Clone the repository:
    ```bash
    git clone https://github.com/prajjwalhacker/movie-browser-frontend.git
+   npm install
+   npm run dev
