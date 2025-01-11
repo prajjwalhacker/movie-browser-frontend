@@ -14,12 +14,12 @@ export default function MovieCard({ item }) {
     }
     else {
        const newArr= JSON.parse(storedMovie);
-       const isAlreadyPresent = newArr.findIndex((item) => item.Title === value.Title);
+       const isAlreadyPresent = newArr.findIndex((item) => item.originalTitle === value.originalTitle);
        if (isAlreadyPresent === -1) {
         newArr.push(value);
        }
        else {
-        toast.warn(`${value.Title} has already been added to your favorites!`, {
+        toast.warn(`${value.originalTitle} has already been added to your favorites!`, {
           position: "top-right", // You can adjust the position as needed
           autoClose: 3000, // Time duration for toast visibility
         });
@@ -33,18 +33,21 @@ export default function MovieCard({ item }) {
       autoClose: 3000, // Time duration for toast visibility
     });
   }
+
+  console.log("item");
+  console.log(item);
   
     return (
       <div className="movie-card">
         <img
-          src={item.Poster}
-          alt={item.Title}
+          src={item?.imageSet?.verticalPoster?.w360}
+          alt={item.originalTitle}
           className="movie-image"
         />
         <div className="movie-detail">
           <div >
-            <h2>{item.Title}</h2>
-            <p>Year: {item.Year}</p>
+            <h2>{item.originalTitle}</h2>
+            <p>Year: {item.releaseYear}</p>
           </div>
         </div>
         <button 

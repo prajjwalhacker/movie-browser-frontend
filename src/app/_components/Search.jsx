@@ -10,6 +10,7 @@ const Search = ({ query ='', onSearch=()=>{} }) => {
       onChange={(e) => {
         onSearch(e);
       }}
+      value={query}
       className='search-container'
       placeholder="Search for movies..."
     />

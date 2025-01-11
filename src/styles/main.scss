@@ -14,6 +14,9 @@
         width: 400px;
         font-size: unset;
     }
+    .search-support-text {
+        font-size: 10px;
+    }
     .movie-section-main {
         display: grid;
         grid-template-columns: repeat(1, minmax(0, 1fr));

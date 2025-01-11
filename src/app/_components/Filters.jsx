@@ -16,21 +16,92 @@ const Filters = ({ filters={}, setFilters = ()=>{}}) => {
   const options = getYears(1990, 2024);
 
   const genres = [
-    { value: "action", label: "Action" },
-    { value: "comedy", label: "Comedy" },
-    { value: "drama", label: "Drama" },
-    { value: "horror", label: "Horror" },
-    { value: "romance", label: "Romance" },
-    { value: "thriller", label: "Thriller" },
-    { value: "sci-fi", label: "Science Fiction" },
-    { value: "fantasy", label: "Fantasy" },
-    { value: "mystery", label: "Mystery" },
-    { value: "adventure", label: "Adventure" },
-    { value: "animation", label: "Animation" },
-    { value: "documentary", label: "Documentary" },
-    { value: "family", label: "Family" },
-    { value: "musical", label: "Musical" },
-  ];
+    {
+      "value": "action",
+      "label": "Action"
+    },
+    {
+      "value": "adventure",
+      "label": "Adventure"
+    },
+    {
+      "value": "animation",
+      "label": "Animation"
+    },
+    {
+      "value": "comedy",
+      "label": "Comedy"
+    },
+    {
+      "value": "crime",
+      "label": "Crime"
+    },
+    {
+      "value": "documentary",
+      "label": "Documentary"
+    },
+    {
+      "value": "drama",
+      "label": "Drama"
+    },
+    {
+      "value": "family",
+      "label": "Family"
+    },
+    {
+      "value": "fantasy",
+      "label": "Fantasy"
+    },
+    {
+      "value": "history",
+      "label": "History"
+    },
+    {
+      "value": "horror",
+      "label": "Horror"
+    },
+    {
+      "value": "music",
+      "label": "Music"
+    },
+    {
+      "value": "mystery",
+      "label": "Mystery"
+    },
+    {
+      "value": "news",
+      "label": "News"
+    },
+    {
+      "value": "reality",
+      "label": "Reality"
+    },
+    {
+      "value": "romance",
+      "label": "Romance"
+    },
+    {
+      "value": "scifi",
+      "label": "Science Fiction"
+    },
+    {
+      "value": "talk",
+      "label": "Talk Show"
+    },
+    {
+      "value": "thriller",
+      "label": "Thriller"
+    },
+    {
+      "value": "war",
+      "label": "War"
+    },
+    {
+      "value": "western",
+      "label": "Western"
+    }
+  ]
+  
 
   const ratingOptions = [
     { value: "0", label: "0" },

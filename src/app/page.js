@@ -14,75 +14,141 @@ export default function Home() {
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [page,setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
-  const [filters, setFilters] = useState({  });
+  const [scroll,setScroll] = useState(false);
+  const [hasMore, setHasMore] = useState(false);
+  const [filters, setFilters] = useState({});
+  const [cursor, setCursor] = useState(null);
   const [isPending, startTransition] = useTransition();
 
   const router = useRouter();
 
+
+
   const onSearch = async (e) => {
    e.preventDefault();
-   setHasMore(true);
    startTransition(() => {
       setQuery(e.target.value);
    })
  };
 
- 
- const fetchMovies = async (filters) => {
-   if (loading || !hasMore) return
-   setLoading(true);
-   try {
-     const response = await axios.get('https://www.omdbapi.com/', {
-       params: {
-         s: query || 'indian',      
-         apikey: process.env.NEXT_PUBLIC_API_KEY, 
-         page, 
-         ...(filters || {})
-       },
-     });
 
-
-     if (response.data.Response === 'True') {
-       if (filters?.page === 1) {
-       setMovies((prev) => [...response.data.Search]);
-       }
-       else {
-         setMovies((prev) => [...prev,...response.data.Search]);
-       }
-     }
-     else {
-        setHasMore(false);
-     }
-   } catch (error) {
-     console.error('Error fetching movies:', error);
-   } finally {
-     setLoading(false);
-   }
- };
-
-
- const fetchMoviesByGenre = () => {
-     try {
-        
-     }
-     catch (err) {
-        
-     }
+ const fetchMoviesForSearch = async () => {
+  const options = {
+    method: 'GET',
+    url: 'https://streaming-availability.p.rapidapi.com/shows/search/title',
+    params: {
+      series_granularity: 'show',
+      show_type: 'movie',
+      output_language: 'en',
+      country: 'IN',
+      title: query || 'indian' 
+    },
+    headers: {
+      'x-rapidapi-key': process.env.NEXT_PUBLIC_X_RAPID_API_KEY,
+      'x-rapidapi-host': process.env.NEXT_PUBLIC_X_RAPID_API_HOST
+    }
+  };
+  
+  try {
+    const response = await axios.request(options);
+    setMovies([...(response.data || [])])
+  } catch (error) {
+    console.error(error);
+  }
  }
 
+ const fetchMoviesWithFilters = async (filters) => {
+
+
+  if (!Object.keys(filters).length) {
+     return;
+  }
+
+  let params = {
+    country: 'IN',
+    // year_max: '2004',
+    series_granularity: 'show',
+    // genres: 'action',
+    order_direction: 'asc',
+    order_by: 'original_title',
+    // year_min: '2001',
+    genres_relation: 'and',
+    output_language: 'en',
+    // rating_max: '10',
+    show_type: 'movie',
+    // rating_min: '9'
+  };
+
+  if (filters.cursor) {
+    params.cursor = filters.cursor
+  }
+  if (filters.startYearRange) {
+     params.year_min = filters.startYearRange;
+  }
+  if (filters.endYearRange) {
+    params.year_max = filters.endYearRange;
+  }
+  if (filters.genre) {
+     params.genres = filters.genre; 
+  }
+  if (filters.startRating) {
+    params.rating_min = filters.startRating;
+  }
+  if (filters.endRating) {
+    params.rating_max = filters.endRating;
+  }
+
+  const options = {
+    method: 'GET',
+    url: 'https://streaming-availability.p.rapidapi.com/shows/search/filters',
+    params: params,
+    headers: {
+      'x-rapidapi-key': process.env.NEXT_PUBLIC_X_RAPID_API_KEY,
+      'x-rapidapi-host': process.env.NEXT_PUBLIC_X_RAPID_API_HOST
+    }
+  };
+  
+  try {
+    const response = await axios.request(options);
+    if (response?.data?.hasMore) {
+      setHasMore(response?.data?.hasMore);
+      setCursor(response?.data?.nextCursor);
+    }
+    else {
+      setHasMore(false);
+    }
+    if (!scroll) {
+      setMovies((prev) => [...(response?.data?.shows || [])]);
+    }
+    else {
+      setMovies((prev) => [...prev, ...(response?.data?.shows || [])]);
+    }
+    setScroll(false);
+  } catch (error) {
+    console.error(error);
+  }
+ }
+ 
+
+
+
  useEffect(() => {
-   fetchMovies({ page: 1 });
+   if (!query) return;
+   fetchMoviesForSearch();
  }, [query]);
 
  useEffect(() => {
-   fetchMovies();
- }, [page]);
+  fetchMoviesForSearch();
+ }, []);
 
 
  useEffect(() => {
-     console.log(filters);
+  if (!Object.keys(filters)?.length) {
+    fetchMoviesForSearch();
+    return;
+  }
+  setQuery('');
+  fetchMoviesWithFilters(filters);
  }, [JSON.stringify(filters)]);
 
  const handleScroll = () => {
@@ -90,7 +156,7 @@ export default function Home() {
      window.innerHeight + document.documentElement.scrollTop >=
      document.documentElement.offsetHeight - 100
    ) {
-     setPage((prevPage) => prevPage + 1);
+     setScroll(true);
    }
  };
 
@@ -100,6 +166,14 @@ export default function Home() {
    return () => window.removeEventListener('scroll', handleScroll);
  }, []);
 
+ useEffect(() => {
+     if (!scroll) return;
+     if (hasMore) {
+      fetchMoviesWithFilters({ ...filters, cursor: cursor })
+     }
+ }, [scroll]);
+
+
   return (
     <main>
        <Hero/>
@@ -108,6 +182,7 @@ export default function Home() {
             Explore Movies
                <div className="movie-section-search">
                   <Search query={query} onSearch={onSearch}/>
+                   <div className="search-support-text">{isPending ? 'fetching movies..' : null}</div>
                </div>
             </div>
             <Filters filters={filters} setFilters={setFilters}/>
