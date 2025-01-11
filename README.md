@@ -6,6 +6,7 @@ A Next.js application to explore movies, search by title, and save favorites.
 - Search for movies
 - Filter by genre, rating, and year
 - Save favorite movies to local storage
+- Infinite scroll
 
 ## Tech Stack
 - **Frontend**: Next.js, React.js
