@@ -1,4 +1,6 @@
 
+import '../../styles/favorite.scss';
+import '../../styles/movie-card.scss';
 
 export const metadata = {
   title: 'Favorite Movie',

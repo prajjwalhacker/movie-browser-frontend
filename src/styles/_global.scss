@@ -2,3 +2,33 @@ body {
     --tw-bg-opacity: 1;
     background-color: rgb(15 17 23 / var(--tw-bg-opacity));
 }
+
+.favorite-movie-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #1a1a1a;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    z-index: 1000;
+  }
+  
+  .favorite-movie-button:hover {
+    background-color: #333;
+    transform: scale(1.05);
+  }
+  
+  .favorite-movie-button:focus {
+    outline: none;
+  }
+  
+  .favorite-movie-button span {
+    margin-left: 8px;
+  }

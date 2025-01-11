@@ -7,6 +7,7 @@ import MovieCard from "./_components/MovieCard";
 import Search from "./_components/Search";
 import { useTransition } from "react";
 import Hero from "./_components/Hero";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   
@@ -17,6 +18,8 @@ export default function Home() {
   const [hasMore, setHasMore] = useState(true);
   const [filters, setFilters] = useState({  });
   const [isPending, startTransition] = useTransition();
+
+  const router = useRouter();
 
   const onSearch = async (e) => {
    e.preventDefault();
@@ -108,6 +111,12 @@ export default function Home() {
                </div>
             </div>
             <Filters filters={filters} setFilters={setFilters}/>
+            <button
+             className="favorite-movie-button"
+             onClick={() => router.push('/favorite')}
+            >
+               See Your Favorite Movies
+            </button>
             {!movies?.length ? <Loader/> : 
             <div className="movie-section-main">  
               {movies.map((item, index) => {
