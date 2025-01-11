@@ -21,24 +21,25 @@ const FavoriteMovies = () => {
   }, []);
 
   return (
-    <div className='favorite-container'>
-         <div className='favorite-title'>
-            Favorite movies
-         </div>
-         <div className="movie-section-main"> 
+    <main className='favorite-container'>
+         <section className='favorite-title'>
+         <h1>Favorite movies</h1>
+         </section>
+         <section className="movie-section-main"> 
             {!!movies?.length ? movies.map((item, index) => {
                            return (
                               <MovieCard key={index} item={item}/>
                            )
             }) : <h2 className='no-favorite-movie-container'>No favorite movie added</h2>}
-            </div>
+         </section>
             <button
              className="favorite-movie-button"
              onClick={() => router.push('/')}
+             aria-label="Back to home"
             >
                Back to Home
             </button>
-    </div>
+    </main>
   )
 }
 

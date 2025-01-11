@@ -101,9 +101,9 @@ export default function Home() {
  }, []);
 
   return (
-    <>
+    <main>
        <Hero/>
-        <div className="movie-section">
+        <section  className="movie-section">
             <div className="movie-section-title">
                Explore Movies
                <div className="movie-section-search">
@@ -128,7 +128,7 @@ export default function Home() {
             {hasMore ? <Loader/> : <div className="no-movies">
   No More Movies Found
 </div>}
-        </div>
-        </>
+        </section >
+        </main>
   );
 }

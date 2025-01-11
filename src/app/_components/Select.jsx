@@ -43,7 +43,7 @@ const MyDropdown = ({ options=[], handleChange=()=>{}, placeholder='', value='' 
       <Select 
         options={options} 
         onChange={handleChange} 
-        value={options.filter((item) => item.value === value)[0]}
+        value={options.filter((item) => item.value === value)[0] || ''}
         placeholder={placeholder}
         styles={customStyles}
       />

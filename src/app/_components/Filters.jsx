@@ -68,6 +68,7 @@ const Filters = ({ filters={}, setFilters = ()=>{}}) => {
   }
 
   const clearFilter=()=> {
+     console.log("hellooo");
      setFilters({});
   }
 
