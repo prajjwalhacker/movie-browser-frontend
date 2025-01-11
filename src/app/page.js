@@ -6,6 +6,7 @@ import Loader from "./_components/InfiniteScrollLoader";
 import MovieCard from "./_components/MovieCard";
 import Search from "./_components/Search";
 import { useTransition } from "react";
+import Hero from "./_components/Hero";
 
 export default function Home() {
   
@@ -97,6 +98,8 @@ export default function Home() {
  }, []);
 
   return (
+    <>
+       <Hero/>
         <div className="movie-section">
             <div className="movie-section-title">
                Explore Movies
@@ -117,5 +120,6 @@ export default function Home() {
   No More Movies Found
 </div>}
         </div>
+        </>
   );
 }
