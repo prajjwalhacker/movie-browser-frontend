@@ -105,7 +105,7 @@ export default function Home() {
        <Hero/>
         <section  className="movie-section">
             <div className="movie-section-title">
-               Explore Movies
+            Explore Movies
                <div className="movie-section-search">
                   <Search query={query} onSearch={onSearch}/>
                </div>
@@ -114,10 +114,11 @@ export default function Home() {
             <button
              className="favorite-movie-button"
              onClick={() => router.push('/favorite')}
+             aria-label="See your favorite movies"
             >
                See Your Favorite Movies
             </button>
-            {!movies?.length ? <Loader/> : 
+            {!movies?.length ? <Loader aria-live="polite"/> : 
             <div className="movie-section-main">  
               {movies.map((item, index) => {
                return (
@@ -125,7 +126,7 @@ export default function Home() {
                )
               })}
             </div>}
-            {hasMore ? <Loader/> : <div className="no-movies">
+            {hasMore ? <Loader aria-live="polite"/> : <div className="no-movies">
   No More Movies Found
 </div>}
         </section >
