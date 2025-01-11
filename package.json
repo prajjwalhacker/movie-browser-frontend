@@ -17,6 +17,7 @@
     "react-loading": "^2.0.3",
     "react-select": "^5.9.0",
     "react-spinners": "^0.15.0",
+    "react-toastify": "^11.0.2",
     "sass": "^1.83.1"
   },
   "devDependencies": {

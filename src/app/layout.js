@@ -8,6 +8,8 @@ import '../styles/_loader.scss';
 import '../styles/_search.scss';
 import '../styles/filters.scss';
 import '../styles/infinite-scroll-loader.scss';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import CSS for toast
 import Hero from './_components/Hero';
 
 export const metadata = {
@@ -23,6 +25,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         {children}
+        <ToastContainer />
       </body>
     </html>
   );
