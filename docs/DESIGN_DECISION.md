@@ -33,7 +33,7 @@
 ## 4. API Integration: OMDb API
 - **Decision**: Chose **OMDb API** as the primary data source for movie information.
 - **Reason**:
-  - OMDb provides comprehensive data, including titles, years, genres, and ratings.
+  - RAPIDAPI provides comprehensive data, including titles, years, genres, and ratings.
   - Free and easy to integrate using API keys.
 - **Challenges**:
   - Limited filtering options (e.g., genre and rating filters are not supported natively).

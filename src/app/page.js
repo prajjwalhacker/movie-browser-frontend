@@ -117,6 +117,8 @@ export default function Home() {
     else {
       setHasMore(false);
     }
+    console.log("scroll");
+    console.log(scroll);
     if (!scroll) {
       setMovies((prev) => [...(response?.data?.shows || [])]);
     }
