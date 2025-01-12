@@ -8,6 +8,16 @@ A Next.js application to explore movies, search by title, and save favorites.
 - Save favorite movies to local storage
 - Infinite scroll
 
+## .env File Addition and add given keys
+- NEXT_PUBLIC_API_KEY
+- NEXT_PUBLIC_X_RAPID_API_KEY
+- NEXT_PUBLIC_X_RAPID_API_HOST
+
+
+
+
+
+
 ## Tech Stack
 - **Frontend**: Next.js, React.js
 - **Backend API**: rapidapi for movie data
