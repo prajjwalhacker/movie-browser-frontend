@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 export default function MovieCard({ item }) {
     
   const onAddToFavorites = (value) => {
+
     const storedMovie = JSON.parse(JSON.stringify(localStorage.getItem('favoriteMovie') || []));
 
 
@@ -19,7 +20,7 @@ export default function MovieCard({ item }) {
         newArr.push(value);
        }
        else {
-        toast.warn(`${value.originalTitle} has already been added to your favorites!`, {
+        toast.warn(`${value.originalTitle || 'Movie'} has already been added to your favorites!`, {
           position: "top-right", // You can adjust the position as needed
           autoClose: 3000, // Time duration for toast visibility
         });
@@ -27,17 +28,14 @@ export default function MovieCard({ item }) {
        }
        localStorage.setItem('favoriteMovie', JSON.stringify(newArr));
     }
-    toast.success(`${value.Title} has been added to your favorites!`, {
-      position: "top-right", // You can adjust the position as needed
-      autoClose: 3000, // Time duration for toast visibility
+    toast.success(`${value.originalTitle} has been added to your favorites!`, {
+      position: "top-right",
+      autoClose: 3000, 
     });
   }
-
-  console.log("item");
-  console.log(item);
   
     return (
-      <div className="movie-card">
+      <div className="movie-card" key={item.id}>
         <img
           src={item?.imageSet?.verticalPoster?.w360}
           alt={item.originalTitle}

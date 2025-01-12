@@ -8,6 +8,8 @@ import Search from "./_components/Search";
 import { useTransition } from "react";
 import Hero from "./_components/Hero";
 import { useRouter } from "next/navigation";
+import { useDeferredValue } from "react";
+import _ from 'lodash';
 
 export default function Home() {
   
@@ -32,7 +34,7 @@ export default function Home() {
  };
 
 
- const fetchMoviesForSearch = async () => {
+ const fetchMoviesForSearch = useCallback(_.debounce(async (query) => {
   const options = {
     method: 'GET',
     url: 'https://streaming-availability.p.rapidapi.com/shows/search/title',
@@ -47,7 +49,7 @@ export default function Home() {
       'x-rapidapi-key': process.env.NEXT_PUBLIC_X_RAPID_API_KEY,
       'x-rapidapi-host': process.env.NEXT_PUBLIC_X_RAPID_API_HOST
     }
-  };
+  }
   
   try {
     const response = await axios.request(options);
@@ -55,7 +57,7 @@ export default function Home() {
   } catch (error) {
     console.error(error);
   }
- }
+ }, 500), []);
 
  const fetchMoviesWithFilters = async (filters) => {
 
@@ -136,7 +138,7 @@ export default function Home() {
 
  useEffect(() => {
    if (!query) return;
-   fetchMoviesForSearch();
+   fetchMoviesForSearch(query);
  }, [query]);
 
  useEffect(() => {
