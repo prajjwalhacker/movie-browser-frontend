@@ -136,7 +136,6 @@ export default function Home() {
 
 
  useEffect(() => {
-   if (!query) return;
    fetchMoviesForSearch(query);
  }, [query]);
 
