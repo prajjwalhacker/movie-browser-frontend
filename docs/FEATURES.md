@@ -21,12 +21,10 @@
 ## 3. Infinite Scroll
 - **Feature**: Automatically load more movies as the user scrolls down.
 - **Implementation**:
-  - Uses an intersection observer to detect when the user reaches the bottom of the page.
   - Fetches additional movie data dynamically without requiring a page reload.
 - **Benefits**:
   - Provides a seamless browsing experience.
   - Optimizes API requests by loading data incrementally.
-
 ---
 
 ## 4. Favorite Movies
@@ -40,9 +38,9 @@
 
 ## 5. Filters
 - Filter movies dynamically by:
-  - Release year
-  - Genre (future implementation)
-  - Ratings (future implementation)
+  - Release year start and end year range filter
+  - Genre
+  - Ratings min rating and max rating filter.
 - **Implementation**:
   - Filters update the API query parameters to fetch relevant results.
 
@@ -53,8 +51,7 @@
   - Semantic HTML elements (`<main>`, `<section>`, etc.).
   - ARIA attributes where needed.
 - Ensures **SEO-friendly** performance:
-  - Server-side rendering (SSR) for better indexing by search engines.
-  - Dynamically generated meta tags for movies and search results.
+  - generated meta tags for movie list page and favorite movie page.
 
 ---
 
