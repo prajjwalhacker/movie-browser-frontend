@@ -8,8 +8,7 @@ import Search from "./_components/Search";
 import { useTransition } from "react";
 import Hero from "./_components/Hero";
 import { useRouter } from "next/navigation";
-import { useDeferredValue } from "react";
-import _ from 'lodash';
+import debounce from 'lodash/debounce';
 
 export default function Home() {
   
@@ -34,7 +33,7 @@ export default function Home() {
  };
 
 
- const fetchMoviesForSearch = useCallback(_.debounce(async (query) => {
+ const fetchMoviesForSearch = useCallback(debounce(async (query) => {
   const options = {
     method: 'GET',
     url: 'https://streaming-availability.p.rapidapi.com/shows/search/title',
